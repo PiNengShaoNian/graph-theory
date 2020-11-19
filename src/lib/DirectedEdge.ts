@@ -19,19 +19,23 @@ export default class DirectedEdge implements Comparable<DirectedEdge> {
     )
   }
 
-  public weight(): number {
+  weight(): number {
     return this._weight
   }
 
-  public from(): number {
+  changeWeight(weight: number): void {
+    this._weight = weight
+  }
+
+  from(): number {
     return this.vertex1
   }
 
-  public to(): number {
+  to(): number {
     return this.vertex2
   }
 
-  public compareTo(that: DirectedEdge): number {
+  compareTo(that: DirectedEdge): number {
     if (this.weight < that.weight) {
       return -1
     } else if (this.weight > that.weight) {
