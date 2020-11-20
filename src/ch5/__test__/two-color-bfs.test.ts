@@ -1,5 +1,5 @@
 import path from 'path'
-import Graph from '../../ch2/graph'
+import Graph from '../../lib/graph'
 import TwoColor from '../two-color-bfs'
 
 test('能正确地识别二分图', () => {

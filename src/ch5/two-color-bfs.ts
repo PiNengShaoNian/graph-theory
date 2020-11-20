@@ -1,4 +1,4 @@
-import Graph from '../ch2/graph'
+import Graph from '../lib/graph'
 import LoopQueue from '../lib/LoopQueue'
 
 const RED = true
@@ -12,14 +12,14 @@ class TwoColorBFS {
   constructor(G: Graph) {
     this.G = G
 
-    for (let source = 0; source < G.V(); source++) {
+    for (let source = 0; source < G.vertices(); source++) {
       if (!this.visited[source]) {
         this.bfs(source)
       }
     }
   }
 
-  bfs(v: number) {
+  private bfs(v: number) {
     const queue = new LoopQueue<number>()
     this.visited[v] = true
     queue.enqueue(v)
@@ -28,7 +28,7 @@ class TwoColorBFS {
     while (queue.size()) {
       const vertex = queue.dequeue()!
 
-      for (const neighbor of this.G.adj(vertex)) {
+      for (const neighbor of this.G.adjacent(vertex)) {
         if (!this.visited[neighbor]) {
           queue.enqueue(neighbor)
           this.color[neighbor] = !this.color[vertex]
@@ -38,6 +38,10 @@ class TwoColorBFS {
         }
       }
     }
+  }
+
+  colors(): boolean[] {
+    return this.color
   }
 
   isTwoColorable(): boolean {
